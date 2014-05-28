@@ -1,0 +1,39 @@
+1. What Difficulties
+This is a challenging project for me. The biggest difficulty is the complicated SQL query it involves. Tokenization of the query is another one.
+
+2. How to Develop
+I tried to divide the design into several steps. Designing SQL statement, integreting SQL into java program, test and optimazation.
+2.1 Pseudocode
+	while(there is next query)
+	{
+		Pick up next query Q;
+		Table TempQuery <- tokenization of query Q;
+		Compute QualityScore using TempQuery, Keywords, Advertisers;
+		Output winner of bid;
+		Update impression times and Balance, if need to change;
+	} 
+2.2 SQL statement
+There are 2 complicated SQL statement to be developed, one is the tokenization of the query and another one is to compute the adrank. The two functions are all
+easy enough if using java but the requirement is SQL only. To tell the truth, the first one is beyond my knowledge. I tried to find a solution from "Oracle PL
+SQL Programming(5th Edition)" using PL/SQL. I had found a SQL solution from internet but finally decide to use PL/SQL implementation which I will mention later.
+The second one involves very complex SQL queries. I tried to divide the computation into minor ones. Query some low-level data first, after testing it's correct, 
+nest a higher level query on it, or join another together. Finally retrieve the adrank value. To achieve it efficiently, I designed some demo tables with a few
+representative values to test the queries.
+2.3 JDBC
+Since most of the work has been done in SQL, here is little effort to do.
+2.4 Optimazation
+At first, I used several SQL statements to fulfill an algorithm. It sounds beautiful to develop a huge statement to retrieve whatever I need but really not to 
+realize, if not impossible. Then I have to retrieve some data between database and java code several times. Leaving aside whether it followed the requirement, 
+it took several hours to compute one algorithm without finishing.
+I thought it would be better to develop one or more PL/SQL or stored procedures on the database, and call them once before I can retrieve all the data. I tried it
+resulting about 13 minutes for a single algorithm.
+Then, I happened to change one query statment by selecting very small part of data before manipulating them, which saved me about half of the time.
+I think I could do better, but since several homework and projects will due, I have to stop here.
+
+3. What to learn
+Through this project, I reinforced my knowledge of complicated nested SQL query, clarified some confusing concept, like join. I did wrong in the "true or false"
+question in midterm test, but I made it clear by testing the query. I also got some idea about the efficiency of different queries and how to write effective 
+SQL statements. Learned some PL/SQL is a plus.
+
+4. Todo
+The project is still not quite efficient, about 40 minutes to finish all the 6 algorithms. I don't know what to achieve but some optimazation is really needed.
